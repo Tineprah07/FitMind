@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Update User Profile</title>
+  </head>
+  <body>
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/profile.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+   <!-- Navigation Bar -->
+  {% include 'navbar_template.html' %}
+     <form enctype="multipart/form-data" action="/profile" method="POST">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+      <input name="uploaded_image" id="uploaded_image" type="file" accept="image/*" onchange="UpdateImage(event)">
+      <p><img id="ProfileImage" width="200"/></p>
+      <script>
+          var UpdateImage = function(event) {
+              var NewImage = document.getElementById('ProfileImage');
+              NewImage.src=URL.createObjectURL(event.target.files[0]);
+          };
+      </script>
+      <input type="submit" placeholder="make changes">
+     </form>
+  {% include 'footer_template.html' %}
+  </body>
+</html>

@@ -1,0 +1,185 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Loading Screen */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #001f1f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    color: white;
+}
+
+.loading-title {
+    font-size: 28px;
+    color: #00ff88;
+    margin-bottom: 15px;
+}
+
+
+.loading-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; 
+}
+
+.logo {
+    width: 150px;
+    height: auto;
+    margin-bottom: -5px;
+}
+
+.progress-container {
+    width: 220px;
+    height: 12px;
+    background: #003f3f;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.progress-bar {
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, #00ff88, #00d4ff);
+    transition: width 0.3s ease-in-out;
+}
+
+.loading-text {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* Welcome Page */
+.container {
+    background: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    animation: fadeIn 1s ease-out;
+}
+
+h1 {
+    font-size: 2.2em;
+    color: #004d40;
+}
+
+.highlight {
+    color: #00bfa5;
+}
+
+.subtext {
+    font-size: 1em;
+    margin-bottom: 20px;
+    color: #666;
+}
+
+/* Features */
+.features {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.feature-card {
+    background: #f0f9f4;
+    border: 1px solid #d4edda;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.feature-card h2 {
+    margin-bottom: 8px;
+    color: #00796b;
+    font-size: 1.1em;
+}
+
+.feature-card p {
+    font-size: 0.9em;
+    color: #555;
+}
+
+/* Buttons */
+.cta-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.register-btn, .signin-btn, .guest-btn {
+    padding: 12px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.register-btn {
+    background-color: #00796b;
+    color: white;
+}
+
+.signin-btn {
+    background-color: #00bfa5;
+    color: white;
+}
+
+.guest-btn {
+    background-color: #eee;
+    color: #00796b;
+    border: 1px solid #00796b;
+}
+
+/* Terms */
+.terms {
+    font-size: 0.75em;
+    color: #666;
+    margin-top: 10px;
+}
+
+.terms a {
+    color: #00796b;
+    text-decoration: none;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(-20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+

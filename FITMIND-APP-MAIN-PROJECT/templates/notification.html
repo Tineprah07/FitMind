@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitMind - Reminder</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}" type="image/png">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/notifications.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <main class="page-wrapper">
+
+        <!-- Navigation Bar -->
+        {% include 'navbar_template.html' %}
+
+        <!-- Sidebar Menu -->
+        <aside class="menu-box" id="menu-box">
+            <header class="menu-icon-top">
+                <i class="fas fa-bell"></i> 
+            </header>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('homepage') }}"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                    <li><a href="{{ url_for('stress') }}"><i class="fas fa-heartbeat"></i> Stress Tracking</a></li>
+                    <li><a href="{{ url_for('exercise') }}"><i class="fas fa-dumbbell"></i> Exercise Tracking</a></li>
+                    <li><a href="{{ url_for('breathe_flow') }}"><i class="fas fa-wind"></i> Breathe Flow</a></li>
+                    <li><a href="{{ url_for('notes') }}"><i class="fas fa-sticky-note"></i> My Note</a></li>
+                    <li><a href="{{ url_for('notification') }}"><i class="fas fa-bell"></i> Reminder</a></li>
+                    <li><a href="{{ url_for('about_app') }}"><i class="fas fa-info-circle"></i> About App</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Hero Section -->
+        <header class="hero">
+            <h1>Set Reminder</h1>
+            <p>Stay consistent and never miss a workout — set reminders to keep your fitness journey on track and build lasting habits.</p>
+        </header>
+
+        <!-- Notifications Section -->
+        <section class="notifications-section">
+            <h1><i class="fas fa-bell"></i> Reminder</h1>
+            <p class="subtext">Add custom Reminder and stay on track with your activities.</p>
+
+            <!-- Notification Input -->
+            <section class="notification-input">
+                <input type="text" id="activity-input" placeholder="Enter your activity (e.g., Meditation, Running)">
+                <input type="time" id="activity-time">
+                <button id="add-notification">Add</button>
+            </section>
+
+            <!-- Upcoming Notifications -->
+            <section class="upcoming-notifications">
+                <h2>Upcoming Reminder and Notifications</h2>
+                <ul id="notification-list">
+                    <!-- Dynamic notifications will be displayed here -->
+                </ul>
+            </section>
+        </section>
+
+        <!-- Footer -->
+        {% include 'footer_template.html' %}
+        
+    </main>
+
+    <!-- JavaScript Files -->
+    <script src="{{ url_for('static',filename='js/notifications.js') }}"></script>
+</body>
+</html>

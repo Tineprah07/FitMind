@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitMind - Exercise Tracking</title>  
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}" type="image/png">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/exercise.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <main class="page-wrapper">
+
+        <!-- Navigation Bar -->
+        {% include 'navbar_template.html' %}
+
+        <!-- Sidebar Menu -->
+        <aside class="menu-box" id="menu-box">
+            <header class="menu-icon-top">
+                <i class="fas fa-dumbbell"></i>
+            </header>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('homepage') }}"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                    <li><a href="{{ url_for('stress') }}"><i class="fas fa-heartbeat"></i> Stress Tracking</a></li>
+                    <li><a href="{{ url_for('exercise') }}"><i class="fas fa-dumbbell"></i> Exercise Tracking</a></li>
+                    <li><a href="{{ url_for('breathe_flow') }}"><i class="fas fa-wind"></i> Breathe Flow</a></li>
+                    <li><a href="{{ url_for('notes') }}"><i class="fas fa-sticky-note"></i> My Note</a></li>
+                    <li><a href="{{ url_for('notification') }}"><i class="fas fa-bell"></i> Reminder</a></li>
+                    <li><a href="{{ url_for('about_app') }}"><i class="fas fa-info-circle"></i> About App</a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <!-- Hero Section -->
+        <header class="hero">
+            <h1>Track Your Fitness Journey</h1>
+            <p>Log your workouts and monitor your progress.</p>
+        </header>
+
+        <!-- Exercise Form Section -->
+        <section class="exercise-section">
+            <h2><i class="fas fa-dumbbell"></i> Log Your Workout</h2>
+
+            <form id="exercise-form" method="POST" action="/exercise">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                <fieldset class="form-group">
+                    <label for="exercise-type">Choose Exercise Type:</label>
+                    <select id="exercise-type" name="Exercise">
+                        <option name="Exercise" id="Cardio" value="Cardio">Cardio</option>
+                        <option name="Exercise" id="Stretching" value="Stretching">Stretching</option>
+                        <option name="Exercise" id="Strength" value="Strength">Strength Training</option>
+                        <option name="Exercise" id="Recreational" value="Recreational">Recreational (Running, Cycling)</option>
+                        <option name="Exercise" id="Yoga" value="Yoga">Yoga</option>
+                        <option name="Exercise" id="HIIT" value="HIIT">High-Intensity Interval Training (HIIT)</option>
+                        <option name="Exercise" id="Pilates" value="Pilates">Pilates</option>
+                        <option name="Exercise" id="Custom" value="Custom">Custom</option>
+                    </select>
+                    <input type="text" id="custom-exercise" name="custom-exercise" placeholder="Enter custom exercise" style="display:none;">
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label for="duration">Duration (minutes):</label>
+                    <input name="duration" type="number" id="duration" placeholder="Enter duration" required>
+                </fieldset>
+
+                <button type="submit" class="log-btn">Log Exercise</button>
+            </form>
+        </section>
+
+        <!-- Logged Exercises -->
+        <section class="exercise-log">
+            <h2>Logged Exercises</h2>
+            <ul id="exercise-list">
+                {% for i in exercise %}
+                <li class="exercise-entry" data-id="{{ i.id }}">
+                    <article class="entry-text">
+                        <span>{{ date_part }}</span>
+                        <span>{{ time_part }}</span>
+                        Date: {{ date_part }} — Time: {{ time_part }}<br>
+                        Exercise: {{ i.type }} ({{ i.duration }} mins)
+                    </article>
+                    <button class="remove-btn" onclick="deleteExerciseEntry({{ i.id }}, this)">🗑️ Delete</button>
+                </li>                
+                {% endfor %}
+            </ul>
+        </section>
+
+        <!-- Progress Chart -->
+        <section class="progress-section">
+            <h2>Your Progress</h2>
+            <figure class="chart-container">
+                <canvas id="progress-chart"></canvas>
+            </figure>            
+        </section>
+
+        <!-- Recommendations -->
+        <section class="recommendations">
+            <h2>Personalized Recommendations</h2>
+            <ul id="suggestions-list"></ul>
+        </section>
+
+        <!-- Footer Section -->
+        {% include 'footer_template.html' %}
+    </main>
+
+    <!-- JavaScript Files -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/exercise.js') }}"></script>
+    <script type="text/javascript">
+        pageLoaded(`{{exercise | tojson}}`);
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<footer class="footer">
+    <section class="footer-container">
+        <article class="footer-logo">
+            <h2>FitMind</h2>
+            <p>Track your fitness and stress levels effortlessly.</p>
+        </article>
+
+        <nav class="footer-links">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="{{ url_for('homepage') }}"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                <li><a href="{{ url_for('stress') }}"><i class="fas fa-heartbeat"></i> Stress Tracking</a></li>
+                <li><a href="{{ url_for('exercise') }}"><i class="fas fa-dumbbell"></i> Exercise Tracking</a></li>
+                <li><a href="{{ url_for('breathe_flow') }}"><i class="fas fa-wind"></i> Breathe Flow</a></li>
+                <li><a href="{{ url_for('notes') }}"><i class="fas fa-sticky-note"></i> My Note</a></li>
+                <li><a href="{{ url_for('notification') }}"><i class="fas fa-bell"></i> Reminder</a></li>
+            </ul>
+        </nav>
+
+    </section>
+
+    <section class="footer-bottom">
+        <p>&copy; 2025 FitMind. All Rights Reserved.</p>
+    </section>
+</footer>

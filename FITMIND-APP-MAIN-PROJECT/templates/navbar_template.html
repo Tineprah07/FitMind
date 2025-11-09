@@ -1,0 +1,43 @@
+<!-- Navigation Bar -->
+<header>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <section id="flash-popup" class="flash-popup">
+            {{ messages[0] }}
+        </section>
+    {% endif %}
+    {% endwith %}
+
+    <nav class="navbar">
+        <section class="menu-container">
+            <button class="menu-icon" id="menu-icon" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i> Menu
+            </button>
+        </section>
+
+        <h1 class="logo">
+            <a href="{{ url_for('homepage') }}">FitMind</a>
+        </h1>
+
+        <section>
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('logout') }}" class="nav-link">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}" class="nav-link">Sign In</a>
+            {% endif %}
+        </section>
+         
+        <!-- Global Reminder Pop-up -->
+        <aside id="reminder-popup" class="reminder-popup">
+            <section class="popup-content">
+                <p id="reminder-message"></p>
+                <button onclick="closeReminderPopup()">OK</button>
+            </section>
+        </aside>
+        
+        <!-- Single Notification Sound -->
+        <audio id="reminder-sound" src="{{ url_for('static', filename='audio/mixkit-bubble-pop-up-alert-notification-2357.wav') }}"></audio>
+    </nav>
+</header>

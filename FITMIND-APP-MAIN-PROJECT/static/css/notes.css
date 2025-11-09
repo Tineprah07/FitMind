@@ -1,0 +1,247 @@
+
+/* HERO SECTION */
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+    background: #e0f2f1;
+    min-height: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero h1 {
+    padding-top: 50px;
+    font-size: 36px;
+    color: #004d40;
+}
+
+.hero p {
+    font-size: 18px;
+    color: #555;
+}
+
+/* Notes Section */
+.notes-section {
+    background: white;
+    max-width: 800px;
+    width: 100%;
+    margin: auto;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+.notes-section h2 {
+    font-size: 24px;
+    color: #004d40;
+    margin-bottom: 20px;
+}
+
+/* Note Input Form */
+.note-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.note-form input,
+.note-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    transition: border 0.3s;
+    resize: none;
+}
+
+.note-form input:focus,
+.note-form textarea:focus {
+    border-color: #00796b;
+}
+
+.note-form button {
+    padding: 12px;
+    font-size: 16px;
+    background: #00796b;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.note-form button:hover {
+    background: #005f56;
+}
+
+/* Search & Show All Buttons */
+.search-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#search-notes {
+    flex-grow: 1;
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    transition: border 0.3s ease-in-out;
+}
+
+#search-notes:focus {
+    border-color: #00796b;
+}
+
+#search-btn,
+#show-all-btn {
+    padding: 12px;
+    font-size: 16px;
+    background: #00796b;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#search-btn:hover,
+#show-all-btn:hover {
+    background: #005f56;
+}
+
+/* Notes Container */
+.notes-container {
+    text-align: left;
+    margin-top: 25px;
+}
+
+.notes-container h2 {
+    font-size: 18px;
+    color: #004d40;
+    margin-bottom: 10px;
+}
+
+#notes-list {
+    list-style: none;
+    padding: 0;
+}
+
+/* Individual Note Card */
+.note-card {
+    background: #f0f9f4;
+    border: 1px solid #d4edda;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: transform 0.2s ease-in-out;
+}
+
+.note-card:hover {
+    transform: scale(1.02);
+}
+
+.note-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.note-content {
+    margin: 8px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.note-date {
+    font-size: 12px;
+    color: gray;
+}
+
+/* Delete Button */
+.delete-note {
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 6px 10px;
+    font-size: 14px;
+    border-radius: 6px;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    transition: background 0.3s;
+}
+
+.delete-note:hover {
+    background: #e84118;
+}
+
+/* Responsive for Mobile */
+@media (max-width: 768px) {
+    .search-container {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    #search-btn,
+    #show-all-btn {
+        width: 100%;
+    }
+
+    .notes-section {
+        padding: 20px;
+    }
+
+    .note-card {
+        font-size: 14px;
+    }
+
+    .menu-box {
+        width: 200px;
+    }
+
+    .menu-box ul li a {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .menu-box ul li a:hover {
+        padding-left: 15px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+    }
+
+    .footer-contact, .footer-social {
+        margin-bottom: 20px;
+    }
+
+    .footer-social {
+        display: flex;
+        justify-content: center;
+    }
+
+    .footer-social a {
+        font-size: 24px;
+    }
+
+    .footer-bottom {
+        padding: 10px 0;
+    }
+
+    .footer ul li a {
+        font-size: 12px;
+    }
+}

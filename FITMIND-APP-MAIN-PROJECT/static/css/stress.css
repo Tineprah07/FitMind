@@ -1,0 +1,244 @@
+/* Stress Style */
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+    background: #e0f2f1;
+    min-height: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.hero h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #004d40;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    padding-top: 50px;
+}
+
+.hero p {
+    font-size: 18px;
+    color: #555;
+    margin-top: 10px;
+}
+
+
+/* STRESS FORM */
+.stress-section, .stress-log, .relaxation-suggestions {
+    max-width: 800px;
+    width: 100%;
+    margin: auto;
+    text-align: left;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+.stress-log h2 , .relaxation-suggestions h2, .stress-section h2 {
+    font-size: 22px;
+    color: #004d40;
+    margin-bottom: 10px;
+}
+
+.relaxation-suggestions ul {
+    padding-left: 20px;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Stress Entry Box */
+.stress-entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f0f9f4;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #d4edda;
+}
+
+.stress-entry .entry-text {
+    font-size: 16px;
+    color: #333;
+}
+
+.stress-entry .notes {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* Delete Button */
+.remove-btn {
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.remove-btn:hover {
+    background: #cc0000;
+}
+
+.form-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: #333;
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    transition: border 0.3s;
+    resize: none;
+}
+
+.form-group input:focus, .form-group textarea:focus {
+    border-color: #00796b;
+}
+
+/* Removes borders from fieldsets */
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+}
+
+/* Emoji Scale */
+.emoji-scale {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+}
+
+.emoji-scale label {
+    font-size: 28px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.emoji-scale label:hover {
+    transform: scale(1.2);
+}
+
+.emoji-scale input {
+    display: none;
+}
+
+.emoji-scale span {
+    margin-left: 5px;
+    font-size: 0.85rem;
+    color: #555;
+}
+
+.emoji-scale span {
+    margin-left: 2px;
+    font-size: 0.85rem;
+    color: #555;
+}
+
+
+/* Log Button */
+.log-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #00796b;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.log-btn:hover {
+    background-color: #005f56;
+}
+
+/* PROGRESS CHART */
+canvas {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+}
+
+/* Responsive for Mobile */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .start-tracking {
+        font-size: 16px;
+    }
+
+    .stress-section, .stress-log, .relaxation-suggestions {
+        padding: 20px;
+    }
+
+    .stress-entry {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+    }
+
+    .remove-btn {
+        align-self: flex-end;
+    }
+
+    .menu-box {
+        width: 200px;
+    }
+
+    .menu-box ul li a {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+    }
+
+    .footer-contact, .footer-social {
+        margin-bottom: 20px;
+    }
+
+    .footer-social {
+        display: flex;
+        justify-content: center;
+    }
+
+    .footer-social a {
+        font-size: 24px;
+    }
+
+    .footer-bottom {
+        padding: 10px 0;
+    }
+
+    .footer ul li a {
+        font-size: 12px;
+    }
+}

@@ -1,0 +1,160 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container */
+.signin-container {
+    background: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 40px 30px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+}
+
+.signin-card h1 {
+    font-size: 24px;
+    color: #004d40;
+    margin-bottom: 10px;
+}
+
+.subtext {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Form Styling */
+.form-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    transition: border 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #00bfa5;
+}
+
+/* Buttons */
+.signin-btn, .guest-btn {
+    background-color: #00796b;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    margin: 10px 0;
+    transition: background-color 0.3s;
+}
+
+.signin-btn:hover {
+    background-color: #005f56;
+}
+
+.guest-btn {
+    background-color: #eee;
+    color: #00796b;
+    border: 1px solid #00796b;
+}
+
+.guest-btn:hover {
+    background-color: #dff0e0;
+}
+
+/* Links */
+.forgot-password {
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.forgot-password a,
+.register-link a {
+    color: #00bfa5;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Register Link */
+.register-link {
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+/* Alert Logout */
+.alert-logout {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #00bfa5;
+    color: white;
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 16px;
+    z-index: 99999;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    animation: slideDown 0.4s ease;
+    display: block;
+    max-width: 80%;
+    text-align: center;
+}
+
+/* Removes borders from fieldsets */
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+}
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -40px);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+}
+
+/* Mobile Friendly */
+@media (max-width: 500px) {
+    .signin-container {
+        padding: 30px 20px;
+    }
+}

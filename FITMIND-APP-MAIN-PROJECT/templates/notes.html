@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitMind - My Notes</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}" type="image/png">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/notes.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <main class="page-wrapper">
+
+        <!-- Navigation Bar -->
+        {% include 'navbar_template.html' %}
+
+        <!-- Sidebar Menu -->
+        <aside class="menu-box" id="menu-box">
+            <header class="menu-icon-top">
+                <i class="fas fa-sticky-note"></i>
+            </header>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('homepage') }}"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                    <li><a href="{{ url_for('stress') }}"><i class="fas fa-heartbeat"></i> Stress Tracking</a></li>
+                    <li><a href="{{ url_for('exercise') }}"><i class="fas fa-dumbbell"></i> Exercise Tracking</a></li>
+                    <li><a href="{{ url_for('breathe_flow') }}"><i class="fas fa-wind"></i> Breathe Flow</a></li>
+                    <li><a href="{{ url_for('notes') }}"><i class="fas fa-sticky-note"></i> My Note</a></li>
+                    <li><a href="{{ url_for('notification') }}"><i class="fas fa-bell"></i> Reminder</a></li>
+                    <li><a href="{{ url_for('about_app') }}"><i class="fas fa-info-circle"></i> About App</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Hero Section -->
+        <header class="hero">
+            <h1>Organize Your Thoughts</h1>
+            <p>Write down your reflections, workout notes, and ideas.</p>
+        </header>
+
+        <!-- Notes Section -->
+        <section class="notes-section">
+            <h2><i class="fas fa-sticky-note"></i> My Notes</h2>
+
+            <!-- Note Input -->
+            <form class="note-form" method="POST" action="/notes">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                <input type="text" name="title" id="note-title" placeholder="Note Title">
+                <textarea id="note-content" name="description" rows="4" placeholder="Write your note..."></textarea>
+                <button type="submit" id="save-note-btn">Save Note</button>
+            </form>
+
+            <!-- Search & Show All Buttons -->
+            <section class="search-container">
+                <input type="text" id="search-notes" placeholder="Search notes...">
+                <button id="search-btn">Search</button>
+                <button id="show-all-btn">Show All Notes</button>
+            </section>
+
+            <!-- Saved Notes -->
+            <article class="notes-container">
+                <h2>Saved Notes</h2>
+                <ul id="notes-list"></ul>
+            </article>
+        </section>
+
+        <!-- Footer Section -->
+        {% include 'footer_template.html' %}
+
+    </main>
+
+    <!-- JavaScript Files -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script defer src="{{ url_for('static',filename='js/notes.js') }}"></script>
+</body>
+</html>

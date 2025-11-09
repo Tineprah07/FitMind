@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FitMind - About App</title>
+  <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}" type="image/png">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+  <main class="page-wrapper">
+    {% include 'navbar_template.html' %}
+
+    <!-- Sidebar Menu -->
+    <aside class="menu-box" id="menu-box">
+      <header class="menu-icon-top"><i class="fas fa-info-circle"></i></header>
+      <nav>
+        <ul>
+          <li><a href="{{ url_for('homepage') }}"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+          <li><a href="{{ url_for('stress') }}"><i class="fas fa-heartbeat"></i> Stress Tracking</a></li>
+          <li><a href="{{ url_for('exercise') }}"><i class="fas fa-dumbbell"></i> Exercise Tracking</a></li>
+          <li><a href="{{ url_for('breathe_flow') }}"><i class="fas fa-wind"></i> Breathe Flow</a></li>
+          <li><a href="{{ url_for('notes') }}"><i class="fas fa-sticky-note"></i> My Note</a></li>
+          <li><a href="{{ url_for('notification') }}"><i class="fas fa-bell"></i> Reminder</a></li>
+          <li><a href="{{ url_for('about_app') }}"><i class="fas fa-info-circle"></i> About App</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Hero -->
+    <header class="hero">
+      <h1>About FitMind</h1>
+      <p>A smart wellness app for students to track their stress, exercises, and stay mindful.</p>
+    </header>
+
+    <!-- App Info Section -->
+    <section class="about-section">
+      <article class="container">
+        <h2>What is FitMind?</h2>
+        <p>FitMind is a digital companion built to help students stay consistent, focused, and energized throughout their academic journey. It offers tools for tracking stress levels, logging physical activities, practicing mindful breathing, and setting smart reminders — all in one seamless and motivating experience.</p>
+
+        <section class="team-section">
+          <h2><i class="fas fa-user-circle"></i> Team Members</h2>
+          <ul class="team-grid">
+            <nav class="team-card">up2158902</nav>
+            <nav class="team-card">up2216448</nav>
+            <nav class="team-card">up2235740</nav>
+            <nav class="team-card">up2206078</nav>
+            <nav class="team-card">up2246765</nav>
+            <nav class="team-card">up2053904</nav>
+          </ul>
+        </section>
+        
+      </article>
+    </section>
+
+    {% include 'footer_template.html' %}
+  </main>
+
+  <!-- Javascript File -->
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

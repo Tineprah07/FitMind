@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitMind - Sign In</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}" type="image/png">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/signIn.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Sign In Page Container -->
+<main class="signin-container">
+    <section class="signin-card">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <aside class="alert-logout">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </aside>
+            {% endif %}
+        {% endwith %}
+
+        <!-- Welcome Message -->
+        <h1>Welcome Back to FitMind</h1>
+        <p class="subtext">Log in to track your stress and workouts.</p>
+
+        <form class="signin-form" method="POST" action="/login">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
+            <fieldset class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </fieldset>
+
+            <a href="{{ url_for('login') }}"></a>
+            <button type="submit" class="signin-btn"><i class="fas fa-user-plus"></i> Sign In</button>
+
+            <a href="{{ url_for('homepage') }}">
+                <button type="button" class="guest-btn"><i class="fas fa-user-secret"></i> Continue as Guest</button>
+            </a>
+        </form>
+
+        <p class="register-link">New to FitMind? <a href="{{ url_for('register') }}">Create an Account</a></p>
+    </section>
+</main>
+
+</body>
+</html>
