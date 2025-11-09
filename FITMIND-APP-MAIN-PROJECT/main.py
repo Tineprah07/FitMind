@@ -9,7 +9,7 @@ import secrets
 from functools import wraps
 from sqlalchemy import update
 from datetime import datetime, timedelta, timezone
-from password_strength import PasswordPolicy
+# from password_strength import PasswordPolicy
 from flask import jsonify
 
 
@@ -33,6 +33,19 @@ with app.app_context():
 # initialises all configured settings #
 
 tokenprotection = CSRFProtect(app)
+
+# ---- simple password checker to replace password_strength ----
+def check_password_rules(pwd: str) -> str | None:
+    """Return an error message if password is weak, otherwise None."""
+    if len(pwd) < 8:
+        return "Password must be at least 8 characters."
+    if not any(c.isupper() for c in pwd):
+        return "Password must contain at least 1 uppercase letter."
+    # count non-letters (digits and symbols)
+    non_letters = sum(1 for c in pwd if not c.isalpha())
+    if non_letters < 2:
+        return "Password must contain at least 2 non-letter characters (numbers or symbols)."
+    return None
 
 class SignupForm(FlaskForm):
     recaptcha = RecaptchaField()
@@ -95,58 +108,64 @@ def login():
                 return render_template('login.html')
 
 
-policy = PasswordPolicy.from_names(
-    length=8,  # min length: 8
-    uppercase=1,  # need min. 1 uppercase letters
-    nonletters=2,  # need min. 2 non-letter characters (digits, specials, anything)
-)
+# policy = PasswordPolicy.from_names(
+#     length=8,  # min length: 8
+#     uppercase=1,  # need min. 1 uppercase letters
+#     nonletters=2,  # need min. 2 non-letter characters (digits, specials, anything)
+# )
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     if request.method == "GET":
         form = SignupForm()
         if current_user.is_authenticated:
-            # redirects if user logged in #
-            return redirect("homepage.html")
+            return redirect(url_for("homepage"))
         return render_template("register.html", form=form)
+
     if request.method == "POST":
         if current_user.is_authenticated:
-            # redirects if user logged in #
-            return redirect("homepage.html")
-        with app.app_context():
-            try:
-                # requests all data from register form #
-                username = request.form["username"]
-                email = request.form["email"]
-                user_password = request.form["password"]
-                confirm_password = request.form["confirm_password"]
-                username_presence_check = UserAccounts.query.filter_by(username=username).first()
-                email_presence_check = UserAccounts.query.filter_by(username=email).first()
-                if username_presence_check is not None or email_presence_check is not None:
-                    flash("email or username is already in use")
-                    return render_template('register.html')
-                # checks no other accounts with same details exist #
-                # set of if checks to verify password security #
-                password_check = policy.test(user_password)
-                if len(password_check) != 0:
-                    flash(
-                        "passwords must be at least 8 characters, and contain 1 uppercase letter with 2 "
-                        "non-alphabetic characters")
-                    return render_template('register.html')
-                if user_password != confirm_password:
-                    flash("Both passwords do not match")
-                    return render_template('register.html')
-                # adds user to db, but with confirmed and staff set to false #
-                user = UserAccounts(username=username, email=email)
-                user.set_password(user_password)
-                db.session.add(user)
-                db.session.commit()
-                login_user(user)
-                return redirect(url_for('homepage'))
-            except Exception as e:
-                flash("An unexpected error occurred when adding your account to our system")
-                flash(f'{e}')
-                return render_template('register.html')
+            return redirect(url_for("homepage"))
+
+        try:
+            username = request.form["username"]
+            email = request.form["email"]
+            user_password = request.form["password"]
+            confirm_password = request.form["confirm_password"]
+
+            # ✅ correct checks
+            username_exists = UserAccounts.query.filter_by(username=username).first()
+            email_exists = UserAccounts.query.filter_by(email=email).first()
+
+            if username_exists or email_exists:
+                flash("Email or username is already in use.")
+                return render_template("register.html")
+
+            # ✅ password rules (replacement for password_strength)
+            pwd_error = check_password_rules(user_password)
+            if pwd_error:
+                flash(pwd_error)
+                return render_template("register.html")
+
+            if user_password != confirm_password:
+                flash("Both passwords do not match.")
+                return render_template("register.html")
+
+            # ✅ create user
+            user = UserAccounts(username=username, email=email)
+            user.set_password(user_password)
+
+            db.session.add(user)
+            db.session.commit()
+
+            login_user(user)
+            return redirect(url_for("homepage"))
+
+        except Exception as e:
+            db.session.rollback()
+            flash("An unexpected error occurred when adding your account to our system")
+            flash(str(e))
+            return render_template("register.html")
+
 
 
 @app.route("/stress", methods=['GET', 'POST'])
